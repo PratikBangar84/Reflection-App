@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_5/bottomnavbar.dart';
+import 'package:flutter_application_5/homescreen.dart';
 import 'SignUp.dart';
 
 class SignIn extends StatelessWidget {
@@ -54,35 +56,35 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             Container(
               padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
               child: TextField(
-                obscureText: true,
                 controller: passwordController,
                 decoration: InputDecoration(
                   enabledBorder: OutlineInputBorder(
                     borderSide: const BorderSide(color: Colors.pink, width: 1),
                     borderRadius: BorderRadius.circular(25.0),
                   ),
-                  labelText: 'User Name',
+                  labelText: 'Email',
                 ),
               ),
             ),
             Container(
-              padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+              padding: EdgeInsets.all(10),
               child: TextField(
                 obscureText: true,
-                controller: passwordController,
+                controller: nameController,
                 decoration: InputDecoration(
                   enabledBorder: OutlineInputBorder(
                     borderSide: const BorderSide(color: Colors.pink, width: 1),
                     borderRadius: BorderRadius.circular(25.0),
                   ),
+                  // border: OutlineInputBorder(
+                  //   borderRadius: BorderRadius.circular(25.0),
+                  // ),
                   labelText: 'Password',
                 ),
               ),
             ),
             TextButton(
-              onPressed: () {
-                //forgot password screen
-              },
+              onPressed: () {},
               child: Text(
                 'Forgot Password',
                 style: TextStyle(
@@ -96,10 +98,15 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                     borderRadius: BorderRadius.circular(25)),
                 padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
                 child: Center(
-                  child: Text(
-                    'Login',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.white),
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => homepage()));
+                    },
+                    child: Text(
+                      'Login',
+                      style: TextStyle(color: Colors.black),
+                    ),
                   ),
                 )),
             Row(

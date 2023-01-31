@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_application_5/belief.dart';
+import 'package:flutter_application_5/Navbar/checklist.dart';
+import 'package:flutter_application_5/Navbar/contact.dart';
 import 'package:flutter_application_5/homescreen.dart';
-import 'package:flutter_application_5/secondpage.dart';
+import 'package:flutter_application_5/Navbar/journaling.dart';
+import 'package:flutter_application_5/Navbar/secondpage.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
 class Navbar extends StatefulWidget {
-  const Navbar({Key? key}) : super(key: key);
+  final index;
+  const Navbar({Key? key, this.index}) : super(key: key);
 
   @override
   State<Navbar> createState() => _NavbarState();
@@ -14,9 +19,13 @@ class Navbar extends StatefulWidget {
 
 class _NavbarState extends State<Navbar> {
   int selectedIndex = 0;
-  final tabs = [
-    secondpage(),
-  ];
+  final tabs = [secondpage(), journaling(), checklist(), contact()];
+  @override
+  void initState() {
+    selectedIndex = widget.index;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,8 +46,6 @@ class _NavbarState extends State<Navbar> {
                     textColor: Colors.pinkAccent,
                     text: 'Reminder          ',
                     onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => homepage()));
                       setState(() {
                         selectedIndex = 0;
                       });
