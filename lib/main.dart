@@ -1,14 +1,18 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_5/bottomnavbar.dart';
-import 'package:flutter_application_5/catogaries.dart';
 import 'package:flutter_application_5/homescreen.dart';
-import 'package:flutter_application_5/Navbar/secondpage.dart';
-import 'package:flutter_application_5/textscreenog.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 import 'login.dart';
 
-void main() {
+var email;
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  email = prefs.getString('email');
   runApp(MaterialApp(
-    initialRoute: 'Login',
-    routes: {'Login': (context) => homepage()},
+    debugShowCheckedModeBanner: false,
+    home: email == null ? LoginPage() : HomePage(),
   ));
 }
